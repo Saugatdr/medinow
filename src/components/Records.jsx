@@ -27,25 +27,31 @@ function Records() {
                 <td>1</td>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>@mdo</td>
+                <td>mark.otto@gmail.com</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Jacob</td>
                 <td>Thornton</td>
-                <td>@fat</td>
+                <td>jacob_thorn@hotmail.com</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Jim</td>
                 <td>Lamar</td>
-                <td>@jlm</td>
+                <td>jimmylamara@gmail.com</td>
               </tr>
-              <tr>
-                <td>3</td>
-                <td colSpan={2}>Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+  
+              {patients.map((patient, index) => {
+                return (
+                  <tr key={patient.patientEmail}>
+                    <td>{index +1}</td>
+                    <td>{patient.patientFirstName}</td>
+                    <td >{patient.patientLastName}</td>
+                    <td>{patient.patientEmail}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Col>

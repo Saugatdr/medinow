@@ -1,32 +1,42 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function BasicExample({patientsFirstName, setPatientsFirstName, patientsLastName, setPatientsLastName, patientsEmail, setPatientsEmail, patients, setPatients}) {
-  const handleSetPatients = () => {
-    setPatients(prevState => console.log(prevState))
+function BasicExample({patientFirstName, setPatientFirstName, patientLastName, setPatientLastName, patientEmail, setPatientEmail, setPatients,patients}) {
+  const handleSetPatients = (e) => {
+    e.preventDefault();
+    
+    setPatients(prevPatients =>[...prevPatients,{
+        patientFirstName,
+        patientLastName,
+        patientEmail
+    }
+    ])
+   
   }
+   console.log(patients)
+  
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="formBasicFirstName">
         <Form.Label>Patient's first name</Form.Label>
-        <Form.Control type="text" placeholder="Name" value={patientsFirstName} onChange={(e) => setPatientsFirstName(e.target.value)}/>
+        <Form.Control type="text" placeholder="Name" value={patientFirstName} onChange={(e) => setPatientFirstName(e.target.value)}/>
       </Form.Group>
-       <Form.Group className="mb-3" controlId="formBasicPassword">
+       <Form.Group className="mb-3" controlId="formLastName">
         <Form.Label>Patient's last name</Form.Label>
-        <Form.Control type="text" placeholder="Name" value={patientsLastName} onChange={(e) => setPatientsLastName(e.target.value)}/>
+        <Form.Control type="text" placeholder="Name" value={patientLastName} onChange={(e) => setPatientLastName(e.target.value)}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label> Patient Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" onChange={(e) => setPatientsEmail(e.target.value)}  value={patientsEmail}/>
+        <Form.Control type="email" placeholder="Enter email" onChange={(e) => setPatientEmail(e.target.value)}  value={patientEmail}/>
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
 
-      <Button onClick={handleSetPatients} variant="primary" type="submit">
+      <Button onClick={(e) => handleSetPatients(e)} variant="primary" type="submit">
         Submit
       </Button>
     </Form>
